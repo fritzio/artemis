@@ -1,0 +1,2 @@
+add_subdirectory(molecular-dynamics)
+add_subdirectory(smoothed-particle-hydrodynamics)
