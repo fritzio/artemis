@@ -8,17 +8,21 @@ project(artemis VERSION 0.0.1 DESCRIPTION "WIP")
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(core)
-include_directories(third-party)
+include_directories(examples)
+include_directories(test)
 
-include_directories(third-party/thrust)
+# set the output directory of the binaries to the current folder
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+
+# include_directories(third-party/thrust)
+# include_directories(third-party/googletest)
 
 set(CMAKE_PREFIX_PATH third-party/thrust)
 
 find_package(Thrust REQUIRED CONFIG)
+# find_package(GoogleTest)
 
-# thrust_create_target(Thrust HOST CPP DEVICE OMP)
 thrust_create_target(Thrust FROM_OPTIONS)
-
 
 #set(THRUST_DIRECTORY third-party/thrust)
 #add_subdirectory(${THRUST_DIRECTORY})
@@ -30,6 +34,10 @@ thrust_create_target(Thrust FROM_OPTIONS)
 
 add_subdirectory(core)
 add_subdirectory(examples)
+add_subdirectory(test)
+
+add_subdirectory(third-party/thrust)
+add_subdirectory(third-party/googletest)
 
 # file(GLOB_RECURSE CORE_FILES "core/*.cpp")
 
