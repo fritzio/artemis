@@ -20,9 +20,9 @@ int convert_to_cell_id(const int3 coordinate, const int3 cell_count);
 
 int3 convert_to_coordinates(const int cell_id, const int3 cell_count);
 
-std::array<int3, 28> get_neighboring_coordinates(const int3 coordinate, const int3 cell_count);
+std::array<int3, 27> get_neighboring_coordinates(const int3 coordinate, const int3 cell_count);
 
-std::array<int, 28> get_neighboring_ids(const int cell_id, const int3 cell_count);
+std::array<int, 27> get_neighboring_ids(const int cell_id, const int3 cell_count);
 
 } // namespace grid
 

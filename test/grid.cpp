@@ -33,6 +33,10 @@ TEST(Grid, CellConversionOfCoordinatesToCellIds) {
 }
 
 TEST(Grid, ConversionOfCellIdsToCoordinates) {
+    std::array<int, 27> neighboring_ids = artemis::grid::get_neighboring_ids(0, {10, 10, 10});
+
+    // for (const auto _ : neighboring_ids)
+    //     std::cout << _ << std::endl;
 
     // EXPECT_EQ(artemis::grid::convert_to_coordinates(0, {4, 3, 2}), {0, 0, 0});
 }

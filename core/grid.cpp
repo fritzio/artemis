@@ -32,34 +32,54 @@ artemis::grid::int3 artemis::grid::convert_to_coordinates(const int cell_id, con
     return artemis::grid::int3({x, x, x});
 }
 
-std::array<artemis::grid::int3, 28> artemis::grid::get_neighboring_coordinates(const artemis::grid::int3 coordinate,
+std::array<artemis::grid::int3, 27> artemis::grid::get_neighboring_coordinates(const artemis::grid::int3 coordinate,
                                                                                const artemis::grid::int3 cell_count) {
 
     const int x = std::get<0>(coordinate);
     const int y = std::get<1>(coordinate);
     const int z = std::get<2>(coordinate);
 
-    std::array<artemis::grid::int3, 28> neighboring_coordinates = {
-        std::tuple<int, int, int>{x, y, z},     //
-        std::tuple<int, int, int>{x - 1, y, z}, // left
-        std::tuple<int, int, int>{x + 1, y, z}, // right
-        std::tuple<int, int, int>{x, y - 1, z}, // bottom
-        std::tuple<int, int, int>{x, y + 1, z}, // top
-        std::tuple<int, int, int>{x, y, z - 1}, // back
-        std::tuple<int, int, int>{x, y, z + 1}, // front
+    std::array<artemis::grid::int3, 27> neighboring_coordinates = {
+        std::tuple<int, int, int>({x, y, z}),             //
+        std::tuple<int, int, int>({x - 1, y, z}),         //
+        std::tuple<int, int, int>({x + 1, y, z}),         //
+        std::tuple<int, int, int>({x, y - 1, z}),         //
+        std::tuple<int, int, int>({x - 1, y - 1, z}),     //
+        std::tuple<int, int, int>({x + 1, y - 1, z}),     //
+        std::tuple<int, int, int>({x, y + 1, z}),         //
+        std::tuple<int, int, int>({x - 1, y + 1, z}),     //
+        std::tuple<int, int, int>({x + 1, y + 1, z}),     //
+        std::tuple<int, int, int>({x, y, z - 1}),         //
+        std::tuple<int, int, int>({x - 1, y, z - 1}),     //
+        std::tuple<int, int, int>({x + 1, y, z - 1}),     //
+        std::tuple<int, int, int>({x, y - 1, z - 1}),     //
+        std::tuple<int, int, int>({x - 1, y - 1, z - 1}), //
+        std::tuple<int, int, int>({x + 1, y - 1, z - 1}), //
+        std::tuple<int, int, int>({x, y + 1, z - 1}),     //
+        std::tuple<int, int, int>({x - 1, y + 1, z - 1}), //
+        std::tuple<int, int, int>({x + 1, y + 1, z - 1}), //
+        std::tuple<int, int, int>({x, y, z - 1}),         //
+        std::tuple<int, int, int>({x - 1, y, z - 1}),     //
+        std::tuple<int, int, int>({x + 1, y, z - 1}),     //
+        std::tuple<int, int, int>({x, y - 1, z - 1}),     //
+        std::tuple<int, int, int>({x - 1, y - 1, z - 1}), //
+        std::tuple<int, int, int>({x + 1, y - 1, z - 1}), //
+        std::tuple<int, int, int>({x, y + 1, z - 1}),     //
+        std::tuple<int, int, int>({x - 1, y + 1, z - 1}), //
+        std::tuple<int, int, int>({x + 1, y + 1, z - 1})  //
     };
 
     return neighboring_coordinates;
 }
 
-std::array<int, 28> artemis::grid::get_neighboring_ids(const int cell_id, const artemis::grid::int3 cell_count) {
+std::array<int, 27> artemis::grid::get_neighboring_ids(const int cell_id, const artemis::grid::int3 cell_count) {
 
-    const artemis::grid::int3 x = artemis::grid::convert_to_coordinates(cell_id, cell_count);
+    const artemis::grid::int3 xyz = artemis::grid::convert_to_coordinates(cell_id, cell_count);
 
-    const std::array<artemis::grid::int3, 28> neighboring_coordinates = get_neighboring_coordinates(x, cell_count);
-    std::array<int, 28> neighboring_ids;
+    const std::array<artemis::grid::int3, 27> neighboring_coordinates = get_neighboring_coordinates(xyz, cell_count);
+    std::array<int, 27> neighboring_ids;
 
-    for (std::size_t i = 0; i < 28; ++i) {
+    for (std::size_t i = 0; i < neighboring_ids.size(); ++i) {
         neighboring_ids.at(i) = convert_to_cell_id(neighboring_coordinates.at(i), cell_count);
     }
 
