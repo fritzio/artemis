@@ -1,8 +1,8 @@
 #ifndef ARTEMIS_GRID_HPP
 #define ARTEMIS_GRID_HPP
 
-#include <tuple>
 #include <cmath>
+#include <tuple>
 
 namespace artemis {
 

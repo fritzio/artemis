@@ -3,27 +3,26 @@
 #include <array>
 
 int artemis::grid::periodic_mapping(const int x, const int nx) {
-	return std::abs(x + nx) % nx;
+    return std::abs(x + nx) % nx;
 }
 
 int artemis::grid::map_coordinates_to_identifier(const int x, const int y, const int z, const int nx, const int ny) {
-	return x + y * nx + z * nx * ny;
+    return x + y * nx + z * nx * ny;
 }
 
-artemis::grid::int3 artemis::grid::map_identifier_to_coordinates(const int cell_id, const int nx, const int ny, const int nz) {
-    
-}
+artemis::grid::int3 artemis::grid::map_identifier_to_coordinates(const int cell_id, const int nx, const int ny,
+                                                                 const int nz) {}
 
 int artemis::grid::convert_to_cell_id(const artemis::grid::int3 coordinate, const artemis::grid::int3 cell_count) {
 
-	const int x = periodic_mapping(std::get<0>(coordinate), std::get<0>(cell_count));
-	const int y = periodic_mapping(std::get<1>(coordinate), std::get<1>(cell_count));
-	const int z = periodic_mapping(std::get<2>(coordinate), std::get<2>(cell_count));
+    const int x = periodic_mapping(std::get<0>(coordinate), std::get<0>(cell_count));
+    const int y = periodic_mapping(std::get<1>(coordinate), std::get<1>(cell_count));
+    const int z = periodic_mapping(std::get<2>(coordinate), std::get<2>(cell_count));
 
-	const int nx = std::get<0>(cell_count);
-	const int ny = std::get<1>(cell_count);
+    const int nx = std::get<0>(cell_count);
+    const int ny = std::get<1>(cell_count);
 
-	return map_coordinates_to_identifier(x, y, z, nx, ny);
+    return map_coordinates_to_identifier(x, y, z, nx, ny);
 }
 
 artemis::grid::int3 artemis::grid::convert_to_coordinates(const int cell_id, const artemis::grid::int3 cell_count) {
@@ -33,7 +32,7 @@ artemis::grid::int3 artemis::grid::convert_to_coordinates(const int cell_id, con
     return artemis::grid::int3({x, x, x});
 }
 
-std::array<artemis::grid::int3, 28> artemis::grid::get_neighboring_coordinates(const artemis::grid::int3 coordinate, 
+std::array<artemis::grid::int3, 28> artemis::grid::get_neighboring_coordinates(const artemis::grid::int3 coordinate,
                                                                                const artemis::grid::int3 cell_count) {
 
     const int x = std::get<0>(coordinate);
@@ -41,7 +40,7 @@ std::array<artemis::grid::int3, 28> artemis::grid::get_neighboring_coordinates(c
     const int z = std::get<2>(coordinate);
 
     std::array<artemis::grid::int3, 28> neighboring_coordinates = {
-        std::tuple<int, int, int>{x, y, z},     // 
+        std::tuple<int, int, int>{x, y, z},     //
         std::tuple<int, int, int>{x - 1, y, z}, // left
         std::tuple<int, int, int>{x + 1, y, z}, // right
         std::tuple<int, int, int>{x, y - 1, z}, // bottom

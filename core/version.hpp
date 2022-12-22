@@ -10,10 +10,10 @@ namespace version {
 
 std::string thrust() {
 
-  std::string major = std::to_string(THRUST_MAJOR_VERSION);
-  std::string minor = std::to_string(THRUST_MINOR_VERSION);
+    std::string major = std::to_string(THRUST_MAJOR_VERSION);
+    std::string minor = std::to_string(THRUST_MINOR_VERSION);
 
-  return major + "." + minor;
+    return major + "." + minor;
 }
 
 } // namespace version
